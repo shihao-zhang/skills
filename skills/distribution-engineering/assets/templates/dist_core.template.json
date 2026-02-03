@@ -1,0 +1,54 @@
+{
+  "meta": {
+    "project": "YOUR_PROJECT_NAME",
+    "version": "0.1.0",
+    "domain": "YOUR_DOMAIN",
+    "notes": "",
+    "tags": []
+  },
+  "pools": {
+    "example_pool": {
+      "type": "text",
+      "values": ["值1", "值2", "值3"],
+      "sampling_hint": "",
+      "weight": []
+    }
+  },
+  "personas": [
+    {
+      "id": "p_example",
+      "tag": "一句话描述用户类型",
+      "style": "语言风格描述",
+      "behavior_rules": [
+        "行为规则1",
+        "行为规则2"
+      ],
+      "constraints": [],
+      "slot_bias": {}
+    }
+  ],
+  "scenarios": [
+    {
+      "id": "scn_example",
+      "stage": "stage_name",
+      "goal": "用户要完成的目标（一句话）",
+      "context": "",
+      "slot_requirements": [
+        {
+          "name": "slot_name",
+          "required": true,
+          "value_from": { "pool": "example_pool" },
+          "format_hint": "",
+          "ask_if_missing": "缺失时的追问话术",
+          "extraction_hint": "",
+          "examples": []
+        }
+      ],
+      "perturbations": [],
+      "agent_expectations": [
+        "Agent应达成的行为1"
+      ],
+      "eval_policy_ref": ""
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "name": "train_sft_v1",
+    "version": "0.1.0",
+    "notes": ""
+  },
+  "dist_ref": {
+    "project": "YOUR_PROJECT_NAME",
+    "version": "0.1.0",
+    "checksum": ""
+  },
+  "target": {
+    "kind": "train_sft",
+    "count": 5000,
+    "output_format": "jsonl"
+  },
+  "sampling": {
+    "seed": 42,
+    "mix": [
+      { "scenario": "scn_example", "persona": "p_example", "ratio": 0.5 },
+      { "scenario": "scn_example", "persona": "RANDOM", "ratio": 0.5 }
+    ],
+    "turns": {
+      "mode": "ladder",
+      "p1": 0.33,
+      "p2": 0.34,
+      "p3plus": 0.33
+    },
+    "negatives": {
+      "ratio": 0.15,
+      "types": ["out_of_scope", "missing_info", "tool_fail"],
+      "injection_hint": ""
+    },
+    "slot_policy": {
+      "fill_required_prob": 0.9,
+      "withhold_info_prob": 0.3,
+      "contradiction_prob": 0.05
+    }
+  },
+  "constraints": {
+    "frozen": false,
+    "coverage_min": {
+      "per_scenario": 50,
+      "required_slots_coverage": 0.95
+    },
+    "cost_budget": {
+      "max_tokens_per_sample": 1200,
+      "max_usd_total": 50
+    }
+  }
+}

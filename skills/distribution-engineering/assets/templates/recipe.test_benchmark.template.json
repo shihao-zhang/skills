@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "name": "test_benchmark_v1",
+    "version": "0.1.0",
+    "notes": "评测基准集 - 覆盖全场景全Persona"
+  },
+  "dist_ref": {
+    "project": "YOUR_PROJECT_NAME",
+    "version": "0.1.0",
+    "checksum": ""
+  },
+  "target": {
+    "kind": "test_benchmark",
+    "count": 500,
+    "output_format": "jsonl"
+  },
+  "sampling": {
+    "seed": 12345,
+    "mix": [
+      { "scenario": "ALL", "persona": "ALL", "ratio": 1.0 }
+    ],
+    "turns": {
+      "mode": "uniform",
+      "p1": 0.33,
+      "p2": 0.34,
+      "p3plus": 0.33
+    },
+    "negatives": {
+      "ratio": 0.2,
+      "types": ["out_of_scope", "missing_info", "contradiction", "tool_fail"],
+      "injection_hint": "测试集需全面覆盖各类异常"
+    },
+    "slot_policy": {
+      "fill_required_prob": 0.8,
+      "withhold_info_prob": 0.5,
+      "contradiction_prob": 0.1
+    }
+  },
+  "constraints": {
+    "frozen": true,
+    "coverage_min": {
+      "per_scenario": 20,
+      "required_slots_coverage": 1.0
+    },
+    "cost_budget": {
+      "max_tokens_per_sample": 1500,
+      "max_usd_total": 20
+    }
+  }
+}
